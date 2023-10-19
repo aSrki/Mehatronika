@@ -24,6 +24,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <Peripherals/GPIO/led.h>
+#include <Peripherals/Timer/timer.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -67,7 +68,7 @@ static void MX_USART2_UART_Init(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+  __enable_irq();
   /* USER CODE END 1 */
   
 
@@ -78,6 +79,7 @@ int main(void)
 
   /* USER CODE BEGIN Init */
   LED_init();
+  TIMER_init();
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -101,8 +103,7 @@ int main(void)
   while (1)
   {
 	  GPIOA->ODR ^= (0b1 << 5);
-	  HAL_Delay(1000);
-
+	  TIMER_delay(500);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
