@@ -23,7 +23,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <Peripherals/GPIO/led.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -77,7 +77,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-
+  LED_init();
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -100,6 +100,9 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  GPIOA->ODR ^= (0b1 << 5);
+	  HAL_Delay(1000);
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
